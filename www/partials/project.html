@@ -1,0 +1,111 @@
+<div class="ui raised segments">
+  <div class="ui segment">
+    <div class="ui grid">
+      <div class="twelve wide column">
+        <h1>{{project.subdomain}}</h1>
+      </div>
+      <div class="four wide column">
+        <a ng-if="project.running" class="ui green right ribbon label">
+          <h4>Live!</h4>
+        </a>
+        <a ng-if="!project.running" class="ui red right ribbon label">
+          <h4>Stopped</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <a href="http://github.com/{{project.repo}}">{{project.repo}}</a>
+  </div>
+</div>
+
+<div class="ui middle aligned list">
+  <div class="item">
+    <div class="right floated content">
+      <div class="ui simple dropdown button">
+        Add Endpoint <i class="dropdown icon"></i>
+        <div class="menu">
+          <a ng-repeat="method in possibleMethods" class="item" ng-click="newEndpoint(method)">{{method}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Endpoints</h1>
+    </div>
+  </div>
+</div>
+
+<p>
+  Here are all the Endpoints in your {{project.subdomain}} API divided by Method
+</p>
+
+<div class="ui raised segments" ng-repeat="method in methods">
+  <div class="ui segment">
+    <h2>{{method.method.toUpperCase()}}</h2>
+  </div>
+  <div class="ui {{method.color}} segment">
+    <div class="ui middle aligned divided list">
+      <div class="item" ng-repeat="item in method.endpoints">
+        <div class="right floated content">
+          <div class="ui button"><i class="remove icon"></i> Remove</div>
+        </div>
+        <div class="content">
+          <a ng-click="goToEndpoint(method.method,item)"><h3>{{item.replace(".","/")}}</h3></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h1>Options</h1>
+
+<div class="ui raised segments">
+  <div class="ui segment">
+    <h2>Dependencies</h2>
+  </div>
+  <div class="ui segment">
+    <div class="ui middle aligned divided list">
+      <div class="item" ng-repeat="item in dependencies">
+        <div class="right floated content">
+          <div class="ui button"><i class="remove icon"></i> Remove</div>
+        </div>
+        <div class="content">
+          <a href="https://www.npmjs.com/package/{{item}}"><h4>{{item}}</h4></a>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui large transparent left icon input">
+        <i class="plus icon"></i>
+        <input type="text" placeholder="Add Dependency...">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui raised segments" ng-repeat="item in code">
+  <div class="ui segment">
+    <div class="ui middle aligned list">
+      <div class="item">
+        <div class="right floated content">
+          <button class="ui button" ng-click="cancel(item)" ng-show="item.set">Cancel</button>
+          <button class="ui blue button" ng-click="save(item)" ng-show="item.set">Save</button>
+          <button class="ui green button" ng-click="item.set = !item.set" ng-show="item.set">On</button>
+          <button class="ui button" ng-click="item.set = !item.set" ng-show="!item.set">Off</button>
+        </div>
+        <div class="content">
+          <h2>{{item.description}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment" ng-show="item.set">
+    <div id="editor{{item.name}}"></div>
+    <br><br><br><br>
+  </div>
+</div>
+
+<div class="ui center aligned container">
+  <button class="ui red button"><i class="remove icon"></i> Delete Project</button>
+</div>

@@ -1,0 +1,46 @@
+@font-face {
+  font-family: Lobster;
+  src: url('../fonts/lobster-two/LobsterTwo-Regular.otf');
+}
+@font-face {
+  font-family: Lobster;
+  src: url('../fonts/lobster-two/LobsterTwo-Bold.otf');
+}
+MyHeader {
+  font-family: Lobster, sans-serif;
+}
+#editorauth {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#editoronError {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#editorunauthorised {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#editorhandler {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#editorcustom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

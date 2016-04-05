@@ -1,0 +1,39 @@
+<div class="ui middle aligned list">
+  <div class="item">
+    <div class="right floated content">
+      <a href="#/projects/new">
+        <button class="ui button">
+          <i class="plus icon"></i>
+          New Project
+        </button>
+      </a>
+    </div>
+    <div class="content">
+      <h1>My Projects</h1>
+    </div>
+  </div>
+</div>
+<div class="ui raised segments" ng-repeat="project in projects">
+  <div class="ui segment">
+    <div class="ui grid">
+      <div class="twelve wide column">
+        <a href="#/project/{{project.subdomain}}">
+          <h1>{{project.subdomain}}</h1>
+        </a>
+      </div>
+      <div class="four wide column">
+        <a ng-if="project.running" class="ui green right ribbon label">
+          <h4>Live!</h4>
+        </a>
+        <a ng-if="!project.running" class="ui red right ribbon label"><h4>Stopped</h4></a>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <a href="http://github.com/{{project.repo}}">{{project.repo}}</a>
+  </div>
+  <div class="ui bottom attached blue button" ng-click="goTo(project.subdomain)">
+    <i class="edit icon"></i>
+    Edit Project
+  </div>
+</div>

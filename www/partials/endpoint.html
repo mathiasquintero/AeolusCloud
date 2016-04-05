@@ -1,0 +1,38 @@
+<div class="ui raised segments">
+  <div class="ui segment">
+    <h1><a class="ui green label">{{endpoint.method.toUpperCase()}}</a> {{endpoint.name.replace(".","/")}}</h1>
+  </div>
+  <div class="ui segment">
+    <a href="{{endpoint.webURL()}}">See Code on GitHub</a>
+  </div>
+</div>
+
+<h1>Code:</h1>
+
+<div class="ui raised segments" ng-repeat="item in code">
+  <div class="ui segment">
+    <div class="ui middle aligned list">
+      <div class="item">
+        <div class="right floated content">
+          <button class="ui green button" ng-click="item.set = !item.set" ng-show="item.optional && item.set">On</button>
+          <button class="ui button" ng-click="item.set = !item.set" ng-show="item.optional && !item.set">Off</button>
+        </div>
+        <div class="content">
+          <h2>{{item.title}}</h2>
+          <p>
+            {{item.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment" ng-show="item.set">
+    <div id="editor{{item.name}}"></div>
+    <br><br><br><br><br><br><br>
+  </div>
+</div>
+
+<div class="ui center aligned container">
+  <a href="#/project/{{endpoint.project.subdomain}}" ng-click="save()"><button class="ui green button"><i class="save icon"></i> Save Endpoint</button></a>
+  <a href="#/project/{{endpoint.project.subdomain}}"><button class="ui red button"><i class="remove icon"></i> Delete Endpoint</button></a>
+</div>
